@@ -1,5 +1,11 @@
 #include <iostream>
-#include "Figures.hpp"
+#include <vector>
+
+#include "point.hpp"
+#include "figure.hpp"
+#include "rhombus.hpp"
+#include "pentagon.hpp"
+#include "hexagon.hpp"
 
 int get_command() {
     int command;
@@ -20,28 +26,20 @@ int main() {
             Figure* f;
             std::cout << "1 - Rhombus, 2 - Pentagon, 3 - Hexagon" << std::endl;
             std::cin >> command2;
-            if(command2 == 1) {
-                Point p1, p2, p3, p4;
-                std::cin >> p1 >> p2 >> p3 >> p4;
-                try {
-                    f = new Rhombus{p1, p2, p3, p4};
-                    figures.push_back(f);
-                } catch(std::exception& e) {
-                    std::cerr << e.what() << std::endl;
+            try {
+                if(command2 == 1) {
+                    f = new Rhombus(std::cin);
+                } else if(command2 == 2) {
+                    f = new Pentagon{std::cin};
+                } else if(command2 == 3) {
+                    f = new Hexagon{std::cin};
+                } else {
+                    std::cout << "Wrong input" << std::endl;
                 }
-            } else if(command2 == 2) {
-                Point p1, p2, p3, p4, p5;
-                std::cin >> p1 >> p2 >> p3 >> p4 >> p5;
-                f = new Pentagon{p1, p2, p3, p4, p5};
                 figures.push_back(f);
-            } else if(command2 == 3) {
-                Point p1, p2, p3, p4, p5, p6;
-                std::cin >> p1 >> p2 >> p3 >> p4 >> p5 >> p6;
-                f = new Hexagon{p1, p2, p3, p4, p5, p6};
-                figures.push_back(f);
-            } else {
-                std::cout << "Wrong input" << std::endl;
-            }
+            } catch(std::exception& e) {
+                std::cerr << e.what() << std::endl;
+            }    
         } else if(command1 == 2) {
             std::cout << "Enter index" << std::endl;
             std::cin >> command2;

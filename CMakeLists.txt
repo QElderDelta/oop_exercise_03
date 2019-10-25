@@ -16,7 +16,10 @@ add_test(NAME Test1 COMMAND test1)
 
 add_executable(lab3
     main.cpp
-    Figures.cpp)
+    point.cpp
+    rhombus.cpp
+    pentagon.cpp
+    hexagon.cpp)
 
 set_property(TARGET lab3 PROPERTY CXX_STANDARD 17)
 
