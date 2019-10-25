@@ -67,5 +67,8 @@ int main() {
             std::cout << "Wrong command" << std::endl;
         }
     } 
+    for(const auto& f : figures) {
+        delete f;
+    }
     return 0;
 }
